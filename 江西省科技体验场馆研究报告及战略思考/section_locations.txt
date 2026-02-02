@@ -1,0 +1,2 @@
+Hardware Section found at line 4163: <h4 class="text-lg font-semibold text-primary mb-4">硬件设施规划建议</h4>
+Content Framework found at line 4194: <h4 class="text-lg font-semibold text-primary mb-4">展品内容设计框架</h4>

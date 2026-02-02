@@ -1,0 +1,2572 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>江西省AI、机器人、VR科普基地发展研究报告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.5.0/mermaid.min.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Noto Serif SC', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#1e293b',
+                        secondary: '#475569',
+                        accent: '#3b82f6',
+                        muted: '#64748b',
+                        background: '#f8fafc',
+                        surface: '#ffffff'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #1e293b, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.85), rgba(59, 130, 246, 0.75));
+        }
+
+        .citation-link {
+            transition: all 0.2s ease;
+        }
+
+        .citation-link:hover {
+            background-color: #3b82f6;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .toc-fixed {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            width: 280px;
+            max-height: calc(100vh - 4rem);
+            overflow-y: auto;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-main {
+            margin-left: 320px;
+            max-width: calc(100vw - 360px);
+        }
+
+        .section-divider {
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, transparent);
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 1024px) {
+            .toc-fixed {
+                display: none;
+            }
+
+            .content-main {
+                margin-left: 0;
+                max-width: 100%;
+            }
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .bento-card {
+            background: linear-gradient(135deg, #ffffff, #f8fafc);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Enhanced mermaid node styling for better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            stroke-width: 2px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .mermaid .node text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            fill: #1e293b;
+        }
+
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .mermaid .edge-pattern-solid {
+            stroke: #64748b;
+            stroke-width: 2px;
+        }
+
+        .mermaid .edge-pattern-dotted {
+            stroke: #94a3b8;
+            stroke-width: 2px;
+        }
+
+        /* Enhanced contrast for different node colors */
+        .mermaid .node[style*="fill:#e3f2fd"] text,
+        .mermaid .node[style*="fill:#f3e5f5"] text,
+        .mermaid .node[style*="fill:#e8f5e8"] text,
+        .mermaid .node[style*="fill:#fff3e0"] text {
+            fill: #1e293b;
+            font-weight: 600;
+        }
+
+        .mermaid .node[style*="fill:#1e293b"] text {
+            fill: #ffffff;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+    <base target="_blank">
+<base target="_blank">
+</head>
+
+<body class="bg-background font-sans text-primary leading-relaxed">
+
+    <!-- Fixed Table of Contents -->
+    <nav class="toc-fixed">
+        <h3 class="text-lg font-bold text-primary mb-4 border-b border-gray-200 pb-2">目录</h3>
+        <ul class="space-y-2 text-sm">
+            <li>
+                <a href="#executive-summary" class="text-secondary hover:text-accent transition-colors">执行摘要</a>
+            </li>
+            <li>
+                <a href="#research-background" class="text-secondary hover:text-accent transition-colors">1. 研究背景与目标</a>
+            </li>
+            <li>
+                <a href="#ai-base-status" class="text-secondary hover:text-accent transition-colors">2. AI科普基地建设现状</a>
+            </li>
+            <li>
+                <a href="#robot-base-status" class="text-secondary hover:text-accent transition-colors">3. 机器人科普基地建设现状</a>
+            </li>
+            <li>
+                <a href="#vr-base-status" class="text-secondary hover:text-accent transition-colors">4. VR科普基地建设现状</a>
+            </li>
+            <li>
+                <a href="#core-features" class="text-secondary hover:text-accent transition-colors">5. 核心特色与优势</a>
+            </li>
+            <li>
+                <a href="#existing-problems" class="text-secondary hover:text-accent transition-colors">6. 现存问题与制约因素</a>
+            </li>
+            <li>
+                <a href="#recommendations" class="text-secondary hover:text-accent transition-colors">7. 高质量发展对策建议</a>
+            </li>
+            <li>
+                <a href="#conclusion" class="text-secondary hover:text-accent transition-colors">8. 研究结论与展望</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content-main">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen bg-surface overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://kimi-web-img.moonshot.cn/img/www.518bwg.com/a3a501c1848df17927ffd35f291e4b20f44911be.jpg"
+                    alt="科技馆内部现代建筑和互动展区" class="w-full h-full object-cover opacity-20" size="wallpaper" aspect="wide"
+                    style="photo" query="现代科技馆内部" referrerpolicy="no-referrer" data-modified="1" data-score="0.00" />
+                <div class="hero-overlay absolute inset-0"></div>
+            </div>
+
+            <div class="relative z-10 container mx-auto px-6 py-20">
+                <div class="flex flex-col lg:grid lg:grid-cols-3 gap-12 items-center min-h-screen">
+                    <!-- Title Section -->
+                    <div class="lg:col-span-2">
+                        <div class="mb-6">
+                            <span class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                                <i class="fas fa-flask mr-2"></i>科技赋能科普 创新引领未来
+                            </span>
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-white mb-8 leading-tight">
+                            <span class="italic">江西省AI、机器人、VR</span>
+                            <br />
+                            <span class="gradient-text bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">科普基地发展研究报告</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed">
+                            全面调研与分析江西省AI、机器人、VR相关科普基地建设现状、运营模式、科普成效，为优化科普基地布局、提升运营效能提供科学依据
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <span class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                                <i class="fas fa-brain mr-2"></i>AI科普基地
+                            </span>
+                            <span class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                                <i class="fas fa-robot mr-2"></i>机器人科普基地
+                            </span>
+                            <span class="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                                <i class="fas fa-vr-cardboard mr-2"></i>VR科普基地
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Executive Summary Card -->
+                    <div id="executive-summary" class="lg:col-span-1 w-full">
+                        <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-white/20">
+                            <h2 class="text-2xl font-bold text-primary mb-6 flex items-center">
+                                <i class="fas fa-clipboard-list text-accent mr-3"></i>执行摘要
+                            </h2>
+
+                            <div class="space-y-6">
+                                <div class="bento-card p-6">
+                                    <h3 class="font-semibold text-primary mb-3">核心格局</h3>
+                                    <p class="text-secondary text-sm leading-relaxed">
+                                        江西省已形成"乡村普惠、县域综合、校园特色"的AI科普基地多元发展格局，机器人科普基地围绕职业院校与综合场馆展开，VR科普基地紧扣文旅融合、产业赋能、研学实践等主题
+                                    </p>
+                                </div>
+
+                                <div class="bento-card p-6">
+                                    <h3 class="font-semibold text-primary mb-3">主要成效</h3>
+                                    <p class="text-secondary text-sm leading-relaxed">
+                                        修水县"未来科技馆"入选全国数字公益典型案例；兴国县AI教育实践基地成为全省首个综合型人工智能教育项目；南昌VR主题乐园累计接待游客30余万人次
+                                    </p>
+                                </div>
+
+                                <div class="bento-card p-6">
+                                    <h3 class="font-semibold text-primary mb-3">核心挑战</h3>
+                                    <p class="text-secondary text-sm leading-relaxed">
+                                        管理机制权责划分模糊、基础设施设备维护滞后、专业科普人员匮乏、品牌建设特色辨识度低等制约因素亟待解决
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-accent/10 rounded-lg">
+                                <p class="text-accent font-medium text-sm">
+                                    <i class="fas fa-lightbulb mr-2"></i>
+                                    关键洞察：科普基地需从规模扩张向质量提升转变，实现高质量发展
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Research Background -->
+        <section id="research-background" class="py-20 bg-surface">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                        <span class="border-b-4 border-accent pb-2">研究背景与目标</span>
+                    </h2>
+
+                    <div class="grid md:grid-cols-2 gap-12 mb-16">
+                        <div>
+                            <h3 class="text-2xl font-bold text-primary mb-6">研究背景与意义</h3>
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-accent">
+                                    <h4 class="font-semibold text-primary mb-3">科技革命浪潮</h4>
+                                    <p class="text-secondary text-sm leading-relaxed">
+                                        在全球新一轮科技革命与产业变革的浪潮中，人工智能（AI）、机器人、虚拟现实（VR）作为极具潜力的前沿技术领域，正深刻改变着人们的生活、工作与学习方式，重塑各行业发展格局
+                                    </p>
+                                </div>
+
+                                <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                                    <h4 class="font-semibold text-primary mb-3">国家战略支撑</h4>
+                                    <p class="text-secondary text-sm leading-relaxed">
+                                        国家高度重视科普事业发展，将其视为提升全民科学素质、建设创新型国家的重要支撑。江西省积极布局AI、机器人、VR相关科普基地建设，对于推动江西科普事业发展具有重要价值
+                                    </p>
+                                </div>
+
+                                <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
+                                    <h4 class="font-semibold text-primary mb-3">数字经济发展</h4>
+                                    <p class="text-secondary text-sm leading-relaxed">
+                                        随着数字经济时代的到来，AI、机器人、VR产业已成为经济增长的新引擎，科普基地通过普及相关技术知识，能够促进产业与社会的深度融合
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-2xl font-bold text-primary mb-6">研究对象与方法</h3>
+                            <div class="space-y-4">
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fas fa-university text-accent mr-2"></i>院校类科普基地
+                                    </h5>
+                                    <p class="text-secondary text-xs">依托高校科研资源，如相关实验室与展示中心，凭借深厚的学术底蕴与专业人才队伍，开展前沿技术科普</p>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fas fa-building text-green-500 mr-2"></i>文旅类科普基地
+                                    </h5>
+                                    <p class="text-secondary text-xs">以主题场馆、科技馆等形式呈现，如南昌VR科技馆，将科技与文化旅游融合，为游客带来沉浸式科技体验</p>
+                                </div>
+
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <h5 class="font-semibold text-primary mb-2 flex items-center">
+                                        <i class="fas fa-school text-purple-500 mr-2"></i>乡村校园类基地
+                                    </h5>
+                                    <p class="text-secondary text-xs">关注教育资源相对薄弱地区，如修水县何市镇中心小学的AI科技馆，致力于为乡村青少年打开科技之窗</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 bg-gradient-to-br from-accent/10 to-blue-50 p-6 rounded-xl">
+                                <h4 class="font-semibold text-primary mb-4">研究方法</h4>
+                                <div class="grid grid-cols-2 gap-3 text-sm">
+                                    <div class="flex items-center">
+                                        <i class="fas fa-walking text-blue-500 mr-2"></i>
+                                        <span>实地调研法</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-book text-green-500 mr-2"></i>
+                                        <span>文献分析法</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-balance-scale text-purple-500 mr-2"></i>
+                                        <span>案例比较法</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-comments text-orange-500 mr-2"></i>
+                                        <span>专家访谈法</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: AI Base Status -->
+        <section id="ai-base-status" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">AI科普基地建设现状</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Xiushui Future Science Museum -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-green-600 to-teal-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-seedling mr-3"></i>乡村普惠型AI基地
+                            </h3>
+                            <p class="text-green-100 text-sm mt-2">修水县何市镇中心小学"未来科技馆"</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">创新背景</h4>
+                                    <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-lg">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-award text-green-500 mr-3"></i>
+                                                <span class="text-sm"><strong>全国首个：</strong>以算力和AI科技为核心的乡村小学科技馆</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-calendar text-blue-500 mr-3"></i>
+                                                <span class="text-sm"><strong>开放时间：</strong>2023年9月20日</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-ruler-combined text-purple-500 mr-3"></i>
+                                                <span class="text-sm"><strong>场馆规模：</strong>300多平方米</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users text-orange-500 mr-3"></i>
+                                                <span class="text-sm"><strong>服务范围：</strong>修水县12万中小学生</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-primary mb-3">核心成就</h5>
+                                        <div class="space-y-2 text-sm text-secondary">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-trophy text-yellow-500 mr-2 mt-1"></i>
+                                                <span>入选全国数字公益典型案例，成为乡村AI科普教育标杆</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-handshake text-blue-500 mr-2 mt-1"></i>
+                                                <span>每年接待师生约2000人，通过线上线下联动让修水县12万中小学生受益</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-balance-scale text-green-500 mr-2 mt-1"></i>
+                                                <span>有效弥合城乡数字教育鸿沟</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">六大核心展区</h4>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-green-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-palette text-green-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">未来美术课</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">AI语音作画，语音描述生成图像，学生描绘智能牧场机器人帮助播撒花种的画面</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-atom text-blue-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">未来科学课</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">普慧算力应用，算力场景可视化，深入浅出讲解复杂科技知识</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-history text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">未来历史课</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">AR元宇宙，借助AR元宇宙技术让历史场景生动再现，学生仿佛穿越时空</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-orange-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-running text-orange-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">未来体育课</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">AI智慧体育，利用智能设备监测运动数据，提升学生运动体验</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-yellow-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-star text-yellow-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">未来天文课</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">VR/AR融合，3D月壤展览等沉浸式天文观测体验</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-red-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-chalkboard-teacher text-red-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">未来教室</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">智能教学系统，提供智慧教育解决方案，为日常教学注入新活力</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Xingguo County AI Education Base -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-red-600 to-orange-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-trophy mr-3"></i>县域综合型AI基地
+                            </h3>
+                            <p class="text-red-100 text-sm mt-2">兴国县人工智能教育实践基地</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-3 gap-8">
+                                <div class="lg:col-span-2">
+                                    <h4 class="text-lg font-semibold text-primary mb-4">基地概况</h4>
+                                    
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                                        <div class="bg-gradient-to-br from-red-50 to-orange-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-sm mb-3">基础设施</h5>
+                                            <div class="space-y-2 text-xs">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-building text-blue-500 mr-2"></i>
+                                                    <span>建筑面积约1000平方米</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-robot text-green-500 mr-2"></i>
+                                                    <span>AI教育会客厅、人形机器人实验室</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-plane text-orange-500 mr-2"></i>
+                                                    <span>仿生机械实验室、航空航天实验室</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-sm mb-3">覆盖范围</h5>
+                                            <div class="space-y-2 text-xs">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-school text-blue-500 mr-2"></i>
+                                                    <span>全县140所学校</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-users text-green-500 mr-2"></i>
+                                                    <span>10万余名学子</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-chalkboard-teacher text-orange-500 mr-2"></i>
+                                                    <span>5100+课时校外访学课程</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white p-6 rounded-lg shadow-md">
+                                        <h5 class="font-semibold text-primary mb-4">师资培养"三阶培训法"</h5>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="text-center p-3 bg-yellow-50 rounded-lg">
+                                                <div class="text-lg font-bold text-yellow-600">254名</div>
+                                                <div class="text-secondary text-xs">教师从"AI小白"成长为"科技导师"</div>
+                                            </div>
+                                            <div class="text-center p-3 bg-blue-50 rounded-lg">
+                                                <div class="text-lg font-bold text-blue-600">143所</div>
+                                                <div class="text-secondary text-xs">县级集中培训覆盖项目校</div>
+                                            </div>
+                                            <div class="text-center p-3 bg-green-50 rounded-lg">
+                                                <div class="text-lg font-bold text-green-600">1304课时</div>
+                                                <div class="text-secondary text-xs">入校示教服务</div>
+                                            </div>
+                                            <div class="text-center p-3 bg-purple-50 rounded-lg">
+                                                <div class="text-lg font-bold text-purple-600">全省首个</div>
+                                                <div class="text-secondary text-xs">综合型人工智能教育项目</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                                        <h5 class="font-semibold text-primary mb-4">竞赛成果亮点</h5>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="text-center p-3 bg-yellow-50 rounded-lg">
+                                                <div class="text-lg font-bold text-yellow-600">国家级</div>
+                                                <div class="text-secondary text-xs">学生信息素养提升实践活动</div>
+                                                <div class="text-xs text-muted">智能机器人B类高中组"创新之星"</div>
+                                            </div>
+                                            <div class="text-center p-3 bg-blue-50 rounded-lg">
+                                                <div class="text-lg font-bold text-blue-600">省级突破</div>
+                                                <div class="text-secondary text-xs">优创未来（小学组）</div>
+                                                <div class="text-xs text-muted">填补江西省该赛项空白</div>
+                                            </div>
+                                            <div class="text-center p-3 bg-green-50 rounded-lg">
+                                                <div class="text-lg font-bold text-green-600">世界级</div>
+                                                <div class="text-secondary text-xs">WRC世界机器人大赛</div>
+                                                <div class="text-xs text-muted">一等奖并入围总决赛</div>
+                                            </div>
+                                            <div class="text-center p-3 bg-purple-50 rounded-lg">
+                                                <div class="text-lg font-bold text-purple-600">省级精品</div>
+                                                <div class="text-secondary text-xs">基础教育精品课</div>
+                                                <div class="text-xs text-muted">杨年婷老师AI课例获评</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">参与规模</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
+                                            <div class="text-center mb-3">
+                                                <div class="text-3xl font-bold text-red-600">3.2万+</div>
+                                                <div class="text-secondary text-sm">中小学生参与体验</div>
+                                            </div>
+                                            <div class="text-center">
+                                                <div class="text-2xl font-bold text-orange-600">65%</div>
+                                                <div class="text-secondary text-xs">期望成为机器人工程师</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                                            <h5 class="font-semibold text-primary text-sm mb-3">特色设备</h5>
+                                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-robot text-blue-500 mr-2"></i>
+                                                    <span>克鲁泽机器人</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-drone text-green-500 mr-2"></i>
+                                                    <span>Yanshee机器人</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-dog text-orange-500 mr-2"></i>
+                                                    <span>机械狗</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-plane text-purple-500 mr-2"></i>
+                                                    <span>无人机</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-chess text-red-500 mr-2"></i>
+                                                    <span>机甲大师</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-plus text-muted mr-2"></i>
+                                                    <span>10余种智能设备</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="p-3 bg-orange-100 rounded-lg">
+                                            <p class="text-orange-700 text-xs font-medium">
+                                                <i class="fas fa-star mr-2"></i>
+                                                品牌效应：竞赛成绩证明教育效果，成为有效传播载体
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Provincial AI Education Base Schools -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-6 flex items-center">
+                            <i class="fas fa-graduation-cap text-accent mr-3"></i>校园特色型AI基地
+                        </h3>
+                        <p class="text-secondary text-sm mb-6">入选教育部第二批人工智能教育基地名单的10所学校，成为校园特色型AI科普基地的代表</p>
+                        
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-users text-blue-500 mr-2"></i>科创社团组织
+                                </h4>
+                                <p class="text-secondary text-xs">充分发挥科创社团的组织作用，定期开展AI主题社团活动，如AI创意编程比赛、AI机器人制作等，激发学生对AI的兴趣与热情</p>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-book text-green-500 mr-2"></i>课程体系构建
+                                </h4>
+                                <p class="text-secondary text-xs">将AI基础理论教学融入信息技术、数学等相关学科课程中，同时开设专门的AI校本课程，如"AI与生活""AI编程入门"等</p>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-trophy text-purple-500 mr-2"></i>实践活动开展
+                                </h4>
+                                <p class="text-secondary text-xs">组织学生参与校外AI科普研学活动，带领学生走进科研机构、科技企业；积极参与各类AI赛事，以赛促学，提升学生的实践能力与创新精神</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 bg-gradient-to-r from-accent/10 to-blue-50 p-6 rounded-xl">
+                            <p class="text-accent text-sm font-medium">
+                                <i class="fas fa-lightbulb mr-2"></i>
+                                科普模式：构建"课堂教学 + 社团研学 + 赛事驱动"的科普模式，为青少年AI素养培育提供坚实的校园阵地
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 3: Robot Base Status -->
+        <section id="robot-base-status" class="py-20 bg-surface">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">机器人科普基地建设现状</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Vocational College Base -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-industry mr-3"></i>职业院校联动型基地
+                            </h3>
+                            <p class="text-blue-100 text-sm mt-2">江西冶金职业技术学院科普教育基地</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">产教融合与科普教育双向赋能</h4>
+                                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
+                                        <p class="text-secondary text-sm leading-relaxed mb-4">
+                                            借助新余市"科普一日游"活动平台，成为职业院校参与机器人科普教育的典范。开设智能机器人实操课程，为青少年提供难得的实践学习机会
+                                        </p>
+                                        <div class="space-y-3">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-plane text-blue-500 mr-3"></i>
+                                                <span class="text-sm">无人机飞行原理与操作技巧</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-robot text-green-500 mr-3"></i>
+                                                <span class="text-sm">机器人编程基础知识与实践应用</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-cogs text-purple-500 mr-3"></i>
+                                                <span class="text-sm">工业机器人、服务机器人等多种类型</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-primary mb-3">核心优势</h5>
+                                        <div class="space-y-2 text-sm text-secondary">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i>
+                                                <span>充分发挥职业院校的技术资源优势，将教学实训设备与科普教育相结合</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check-circle text-blue-500 mr-2 mt-1"></i>
+                                                <span>借助学校的专业师资力量，为学生提供专业、深入的讲解与指导</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check-circle text-purple-500 mr-2 mt-1"></i>
+                                                <span>促进职业教育与科普事业的协同发展</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">实践体验内容</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-drone text-blue-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">无人机操控体验</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">在专业教师与志愿者的指导下，亲自操控无人机，感受其在空中灵活飞行的魅力</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-green-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-code text-green-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">机器人编程实践</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">学习使用编程软件，为机器人编写指令，让机器人完成各种有趣的任务，如移动、抓取物品等</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-industry text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">工业机器人认知</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">了解机器人的结构组成、工作原理与应用领域，接触工业机器人、服务机器人等多种类型</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 p-3 bg-blue-100 rounded-lg">
+                                        <p class="text-blue-700 text-xs font-medium">
+                                            <i class="fas fa-lightbulb mr-2"></i>
+                                            教育价值：不仅激发青少年对机器人技术的兴趣，也为学院相关专业的招生与人才培养奠定良好基础
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Science Museum Robot Zone -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-building mr-3"></i>综合场馆集成型基地
+                            </h3>
+                            <p class="text-purple-100 text-sm mt-2">江西省科技馆机器人展区</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">场馆概况</h4>
+                                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-map-marker-alt text-purple-500 mr-3"></i>
+                                                <span class="text-sm"><strong>位置：</strong>南昌红谷滩新区</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-star text-pink-500 mr-3"></i>
+                                                <span class="text-sm"><strong>定位：</strong>省内青少年机器人知识启蒙的核心场馆</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-chart-line text-blue-500 mr-3"></i>
+                                                <span class="text-sm"><strong>影响力：</strong>在机器人科普教育中具有广泛的影响力</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-primary mb-3">展示内容</h5>
+                                        <div class="space-y-3">
+                                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                                <h6 class="font-semibold text-primary text-sm mb-2">机器人原理展示区</h6>
+                                                <p class="text-secondary text-xs">通过模型、展板、多媒体演示等多种形式，详细介绍机器人的发展历程、分类、基本结构以及工作原理</p>
+                                            </div>
+                                            <div class="bg-white p-4 rounded-lg shadow-sm">
+                                                <h6 class="font-semibold text-primary text-sm mb-2">人机互动体验区</h6>
+                                                <p class="text-secondary text-xs">设置多种互动体验项目，观众可以与机器人进行下棋、跳舞、对话等互动活动</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">互动体验项目</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-chess text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">与机器人下棋</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">感受机器人精准的计算能力与策略运用</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-pink-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-music text-pink-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">机器人跳舞表演</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">欣赏机器人优美的动作与协调的姿态</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-comments text-blue-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">与机器人对话</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">体验语音识别与自然语言处理技术的神奇之处</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 bg-gradient-to-r from-purple-100 to-pink-100 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-sm mb-2">学科融合特色</h5>
+                                        <p class="text-secondary text-xs">结合数理化生基础学科知识，将机器人技术与学科知识有机融合，打造兼具科学性与趣味性的科普场景</p>
+                                        <div class="mt-2 grid grid-cols-2 gap-2 text-xs">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-atom text-blue-500 mr-2"></i>
+                                                <span>物理力学、电学</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-flask text-green-500 mr-2"></i>
+                                                <span>化学材料科学</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-dna text-purple-500 mr-2"></i>
+                                                <span>生物感知原理</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-calculator text-orange-500 mr-2"></i>
+                                                <span>数学算法逻辑</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: VR Base Status -->
+        <section id="vr-base-status" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">VR科普基地建设现状</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Nanchang VR Theme Park -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-indigo-600 to-blue-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-gamepad mr-3"></i>文旅融合标杆型基地
+                            </h3>
+                            <p class="text-indigo-100 text-sm mt-2">南昌虚拟现实主题乐园</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">基地概况</h4>
+                                    <div class="bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-award text-indigo-500 mr-3"></i>
+                                                <span class="text-sm"><strong>全国科普教育基地</strong></span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-star text-blue-500 mr-3"></i>
+                                                <span class="text-sm"><strong>国内首个：</strong>实境式VR主题乐园</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users text-green-500 mr-3"></i>
+                                                <span class="text-sm"><strong>累计接待：</strong>游客30余万人次、研学团8万余人</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-primary mb-3">四大主题板块</h5>
+                                        <div class="space-y-3">
+                                            <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-200">
+                                                <h6 class="font-semibold text-primary text-sm mb-2">"未来科技"板块</h6>
+                                                <p class="text-secondary text-xs">游客通过佩戴先进的VR设备，仿佛置身于未来城市，感受飞行汽车、智能建筑等未来科技元素</p>
+                                            </div>
+                                            <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                                <h6 class="font-semibold text-primary text-sm mb-2">"历史文化"板块</h6>
+                                                <p class="text-secondary text-xs">借助VR技术重现南昌的历史场景，如滕王阁的兴衰变迁、八一起义的激烈战斗等</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">核心体验项目</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-plane text-indigo-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">1:1还原波音737驾驶舱</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">为游客提供高度仿真的体验，通过VR技术模拟飞行场景，可以操控各种飞行仪表，感受起飞、巡航、降落等飞行过程</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-landmark text-blue-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">"梦回南昌"沉浸式历史体验</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">游客戴上VR头盔，便能跟随故事情节，在虚拟的南昌古城中穿梭，与历史人物互动，了解南昌的传统文化与历史故事</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 bg-gradient-to-r from-indigo-100 to-blue-100 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-sm mb-2">产业价值</h5>
+                                        <p class="text-secondary text-xs">成为江西VR产业成果展示的重要窗口，促进了VR技术与文旅产业的深度融合，推动了VR知识的广泛传播</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nanchang VR/AR Science Museum -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-cyan-600 to-teal-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-vr-cardboard mr-3"></i>产业赋能专业型基地
+                            </h3>
+                            <p class="text-cyan-100 text-sm mt-2">中国（南昌）VR/AR科技馆</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-3 gap-8">
+                                <div class="lg:col-span-2">
+                                    <h4 class="text-lg font-semibold text-primary mb-4">基地概况</h4>
+                                    
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                                        <div class="bg-gradient-to-br from-cyan-50 to-teal-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-sm mb-3">基本信息</h5>
+                                            <div class="space-y-2 text-xs">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-award text-cyan-500 mr-2"></i>
+                                                    <span>全国首个VR/AR专业科技馆</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-ruler-combined text-teal-500 mr-2"></i>
+                                                    <span>建筑面积达1.7万平方米</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-certificate text-green-500 mr-2"></i>
+                                                    <span>省、市、区三级青少年科技教育基地</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-gradient-to-br from-green-50 to-blue-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-sm mb-3">功能区域</h5>
+                                            <div class="space-y-2 text-xs">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-microchip text-blue-500 mr-2"></i>
+                                                    <span>软硬件主题展区</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-presentation text-green-500 mr-2"></i>
+                                                    <span>企业成果路演区</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-flask text-purple-500 mr-2"></i>
+                                                    <span>VR医疗、AR发动机等产业应用场景体验</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="bg-white p-6 rounded-lg shadow-md">
+                                        <h5 class="font-semibold text-primary mb-4">展示内容</h5>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-history text-cyan-500 mr-2 mt-1"></i>
+                                                <div>
+                                                    <span class="font-medium text-sm">VR/AR技术发展历程</span>
+                                                    <p class="text-secondary text-xs">展示不同时期的VR头盔，介绍其技术演进与性能提升</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-microchip text-teal-500 mr-2 mt-1"></i>
+                                                <div>
+                                                    <span class="font-medium text-sm">核心原理解析</span>
+                                                    <p class="text-secondary text-xs">通过实物展示与现场演示，讲解VR手柄、定位追踪设备等硬件的工作原理</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-laptop-code text-blue-500 mr-2 mt-1"></i>
+                                                <div>
+                                                    <span class="font-medium text-sm">软件开发流程</span>
+                                                    <p class="text-secondary text-xs">利用多媒体演示，呈现VR/AR软件的开发流程与应用案例</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">产业服务功能</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-gradient-to-r from-cyan-100 to-teal-100 p-4 rounded-lg">
+                                            <div class="text-center mb-3">
+                                                <i class="fas fa-rocket text-cyan-600 text-2xl mb-2"></i>
+                                                <div class="text-secondary text-sm">企业成果路演</div>
+                                            </div>
+                                            <p class="text-secondary text-xs">定期举办企业新品发布会、项目路演等活动，展示最新的VR教育产品、医疗解决方案、工业应用案例等</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                                            <h5 class="font-semibold text-primary text-sm mb-3">科普教育活动</h5>
+                                            <div class="space-y-2 text-xs text-secondary">
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-chalkboard-teacher text-cyan-500 mr-2"></i>
+                                                    <span>科普讲座</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-book text-teal-500 mr-2"></i>
+                                                    <span>研学课程</span>
+                                                </div>
+                                                <div class="flex items-center">
+                                                    <i class="fas fa-users text-blue-500 mr-2"></i>
+                                                    <span>向青少年普及VR/AR知识</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="p-3 bg-cyan-100 rounded-lg">
+                                            <p class="text-cyan-700 text-xs font-medium">
+                                                <i class="fas fa-star mr-2"></i>
+                                                兼具科普教育与产业适配服务功能
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Jiujiang VR Study Base -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-orange-600 to-red-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-graduation-cap mr-3"></i>研学实践特色型基地
+                            </h3>
+                            <p class="text-orange-100 text-sm mt-2">九江联通中科VR研学基地</p>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">基地概况</h4>
+                                    <div class="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-lg">
+                                        <div class="space-y-4">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-coins text-orange-500 mr-3"></i>
+                                                <span class="text-sm"><strong>总投资：</strong>6亿元</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-users text-red-500 mr-3"></i>
+                                                <span class="text-sm"><strong>暑期接待：</strong>日均500人次</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-rocket text-purple-500 mr-3"></i>
+                                                <span class="text-sm"><strong>产业规划：</strong>5年内引入30家企业，打造国家级VR数字经济孵化示范园区</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6">
+                                        <h5 class="font-semibold text-primary mb-3">先进设备</h5>
+                                        <div class="grid grid-cols-2 gap-3">
+                                            <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                                <i class="fas fa-space-shuttle text-orange-500 text-xl mb-2"></i>
+                                                <div class="text-xs font-medium">VR太空舱</div>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                                <i class="fas fa-globe text-red-500 text-xl mb-2"></i>
+                                                <div class="text-xs font-medium">火星车</div>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                                <i class="fas fa-wind text-blue-500 text-xl mb-2"></i>
+                                                <div class="text-xs font-medium">台风模拟机</div>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg shadow-sm text-center">
+                                                <i class="fas fa-house-damage text-purple-500 text-xl mb-2"></i>
+                                                <div class="text-xs font-medium">地震模拟机</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">课程特色</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-orange-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-code text-orange-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">自主研发编程课程</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">学生学习使用图形化编程工具，为VR场景中的角色编写动作、交互逻辑等，培养编程思维与创新能力</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-red-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-vr-cardboard text-red-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">VR主题课程</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">围绕航天、防灾、历史文化等主题展开，通过沉浸式体验与讲解，让学生深入了解相关知识</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-6 bg-gradient-to-r from-orange-100 to-red-100 p-4 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-sm mb-2">"沉浸+互动+体验"模式</h5>
+                                        <p class="text-secondary text-xs">有效普及航天、防灾等知识，实现科普教育与产业发展的良性互动</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 5: Core Features -->
+        <section id="core-features" class="py-20 bg-surface">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">核心特色与优势</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Exhibition Mode -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
+                            <i class="fas fa-eye text-accent mr-3"></i>展陈模式：沉浸式互动体验为主导
+                        </h3>
+                        
+                        <p class="text-secondary text-sm mb-6">江西省AI、机器人、VR科普基地在展陈模式上大胆创新，突破传统静态展示的局限，积极引入前沿技术，打造沉浸式互动体验，让观众从被动接受知识转变为主动探索科学奥秘</p>
+
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-subway text-indigo-500 mr-2"></i>南昌VR乐园"时空旅行"
+                                </h4>
+                                <p class="text-secondary text-sm leading-relaxed mb-4">
+                                    游客登上特制的时光列车，戴上VR设备，瞬间穿越时空，领略不同历史时期与地域的独特风貌
+                                </p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>耳边传来逼真的车轮滚动声与汽笛声</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>眼前呈现出19世纪德国科隆的古老街道</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>从工业革命时期的繁忙工厂，到现代繁华都市的车水马龙</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 p-3 bg-indigo-100 rounded-lg">
+                                    <p class="text-indigo-700 text-xs font-medium">
+                                        <i class="fas fa-star mr-2"></i>
+                                        多感官融合的沉浸式体验，极大地增强了科普教育的吸引力与感染力
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-palette text-green-500 mr-2"></i>修水未来科技馆AI语音作画
+                                </h4>
+                                <p class="text-secondary text-sm leading-relaxed mb-4">
+                                    孩子们只需说出心中所想，如"我想要一个会飞的城堡，周围有五彩斑斓的云朵"，AI系统便能迅速将这些抽象的想象转化为生动形象的画作
+                                </p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>将脑海中奇幻的想象转化为生动的图像</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>通过触摸屏幕对画作进行细节调整</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>真正实现与科技的互动</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 p-3 bg-green-100 rounded-lg">
+                                    <p class="text-green-700 text-xs font-medium">
+                                        <i class="fas fa-star mr-2"></i>
+                                        可触摸、可操作的科普方式，充分激发孩子们的好奇心与创造力
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Function Positioning -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
+                            <i class="fas fa-puzzle-piece text-accent mr-3"></i>功能定位：科教研学与产业展示相融合
+                        </h3>
+                        
+                        <p class="text-secondary text-sm mb-6">江西省科普基地功能定位多元，将科教研学与产业展示紧密融合，在科普教育的同时，积极推动产业发展，实现科普与产业的协同共进</p>
+
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-trophy text-red-500 mr-2"></i>兴国基地
+                                </h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">机器人教育</h5>
+                                        <p class="text-secondary text-xs">开展专业的机器人编程、搭建培训课程</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">机器人竞赛</h5>
+                                        <p class="text-secondary text-xs">举办FIRST机器人竞赛、VEX机器人竞赛等</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">能力提升</h5>
+                                        <p class="text-secondary text-xs">提升实践能力与解决问题的能力</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-sun text-blue-500 mr-2"></i>九江VR基地
+                                </h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">暑期研学营</h5>
+                                        <p class="text-secondary text-xs">吸引大量青少年参与，课程丰富多样</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">项目开发实践</h5>
+                                        <p class="text-secondary text-xs">学习使用VR开发软件，亲手制作简单的VR作品</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">行业交流</h5>
+                                        <p class="text-secondary text-xs">邀请VR企业技术人员进行技术分享与交流</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-building text-purple-500 mr-2"></i>南昌VR/AR科技馆
+                                </h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">技术适配平台</h5>
+                                        <p class="text-secondary text-xs">企业可以在科技馆进行产品测试、技术验证</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">路演展示</h5>
+                                        <p class="text-secondary text-xs">举办新品发布会、项目路演等活动</p>
+                                    </div>
+                                    <div class="bg-white p-3 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-xs mb-1">市场拓展</h5>
+                                        <p class="text-secondary text-xs">向投资者、合作伙伴展示创新成果</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Layout Features -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
+                            <i class="fas fa-map-marked-alt text-accent mr-3"></i>布局特点：城乡覆盖与区域协同相统筹
+                        </h3>
+                        
+                        <p class="text-secondary text-sm mb-6">江西省AI、机器人、VR科普基地在布局上注重城乡覆盖与区域协同，形成了层次分明、协同发展的布局格局，确保科普服务惠及更广泛人群</p>
+
+                        <div class="mermaid-container">
+                            <div class="mermaid-controls">
+                                <button class="mermaid-control-btn zoom-in" title="放大">
+                                    <i class="fas fa-search-plus"></i>
+                                </button>
+                                <button class="mermaid-control-btn zoom-out" title="缩小">
+                                    <i class="fas fa-search-minus"></i>
+                                </button>
+                                <button class="mermaid-control-btn reset-zoom" title="重置">
+                                    <i class="fas fa-expand-arrows-alt"></i>
+                                </button>
+                                <button class="mermaid-control-btn fullscreen" title="全屏查看">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                            <div class="mermaid">
+                                graph TD
+                                A["江西省科普基地布局体系"] --> B["省级核心"]
+                                A --> C["县域节点"]
+                                A --> D["区域协同"]
+
+                                B --> B1["南昌VR科技馆"]
+                                B --> B2["南昌VR主题乐园"]
+                                B --> B3["南昌VR/AR科技馆"]
+
+                                C --> C1["兴国县AI基地<br/>1000㎡"]
+                                C --> C2["修水未来科技馆<br/>300㎡"]
+
+                                D --> D1["新余科普一日游"]
+                                D --> D2["跨区域联动"]
+                                D --> D3["资源共享"]
+
+                                style A fill:#1e293b,stroke:#ffffff,stroke-width:3px,color:#ffffff
+                                style B fill:#3b82f6,stroke:#ffffff,stroke-width:2px,color:#ffffff
+                                style C fill:#10b981,stroke:#ffffff,stroke-width:2px,color:#ffffff
+                                style D fill:#8b5cf6,stroke:#ffffff,stroke-width:2px,color:#ffffff
+                            </div>
+                        </div>
+
+                        <div class="grid lg:grid-cols-3 gap-6 mt-8">
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-city text-blue-500 mr-2"></i>省级核心引领
+                                </h4>
+                                <p class="text-secondary text-sm mb-3">南昌作为省会城市，集中了优质的VR/AI资源，打造了多个高端科普场馆</p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                        <span>南昌VR科技馆：全面展示VR技术发展历程</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                        <span>南昌VR主题乐园：娱乐体验为切入点</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-seedling text-green-500 mr-2"></i>县域科普下沉
+                                </h4>
+                                <p class="text-secondary text-sm mb-3">兴国、修水等县域基地充分发挥自身特色，将科普服务下沉到乡村青少年群体</p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>兴国基地：机器人教育实践活动</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>修水科技馆：适合小学生的AI科普课程</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-network-wired text-purple-500 mr-2"></i>区域协同联动
+                                </h4>
+                                <p class="text-secondary text-sm mb-3">新余通过"科普一日游"活动，整合区域内机器人科普基地、科技馆等资源</p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                                        <span>打造科普旅游线路</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                                        <span>实现科普资源的高效利用与共享</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Existing Problems -->
+        <section id="existing-problems" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">现存问题与制约因素</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Management Mechanism -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-red-600 to-pink-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-sitemap mr-3"></i>管理机制：权责划分模糊，协同效能不足
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">"重建设轻管理"倾向</h4>
+                                    <div class="bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-lg">
+                                        <p class="text-secondary text-sm leading-relaxed mb-4">
+                                            部分科普基地将大量资源投入到场馆建设与设备购置上，而在后期运营管理方面重视程度不够
+                                        </p>
+                                        <div class="space-y-3">
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <h5 class="font-semibold text-primary text-xs mb-1">院所、校地两级共管模式问题</h5>
+                                                <p class="text-secondary text-xs">考核体系尚不完善，导致管理过程中出现职能交叉与缺位现象</p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <h5 class="font-semibold text-primary text-xs mb-1">职责划分不清</h5>
+                                                <p class="text-secondary text-xs">学校科研部门与地方科技管理部门在基地管理职责上划分不够清晰</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">缺乏有效联动机制</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-red-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-unlink text-red-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">条块联动协调机制缺失</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">基地间资源难以实现高效整合，不同类型科普基地各自为政，信息沟通不畅</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-pink-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-ban text-pink-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">科研成果转化渠道受阻</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">许多前沿的AI、机器人、VR科研成果难以快速、有效地转化为通俗易懂的科普知识传递给公众</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Infrastructure -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-orange-600 to-yellow-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-tools mr-3"></i>基础设施：设备维护滞后，升级动力不足
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-3 gap-6">
+                                <div class="bg-gradient-to-br from-orange-50 to-yellow-50 p-6 rounded-xl">
+                                    <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                        <i class="fas fa-robot text-orange-500 mr-2"></i>县域基地设备老化
+                                    </h4>
+                                    <p class="text-secondary text-sm">一些县域基地的机器人设备更新不及时，部分机器人仍采用老旧的技术与设计，功能单一，无法展示机器人领域的最新发展成果</p>
+                                </div>
+
+                                <div class="bg-gradient-to-br from-yellow-50 to-green-50 p-6 rounded-xl">
+                                    <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                        <i class="fas fa-server text-yellow-500 mr-2"></i>算力设施支撑有限
+                                    </h4>
+                                    <p class="text-secondary text-sm">乡村科技馆的算力设施支撑能力有限，在运行一些对算力要求较高的AI科普项目时，时常出现卡顿、运行缓慢等问题</p>
+                                </div>
+
+                                <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                                    <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                        <i class="fas fa-money-bill-wave text-green-500 mr-2"></i>维护成本高昂
+                                    </h4>
+                                    <p class="text-secondary text-sm">受经费预算限制，大型VR设备维护成本高昂。部分设备未能及时维护与升级，出现老化、故障频发等问题</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Talent Team -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-users mr-3"></i>人才队伍：专业科普人员匮乏，激励机制缺失
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">人员配置问题</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-user-slash text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">兼职人员为主</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">科普基地的工作人员多为兼职，缺乏系统的科技知识与科普教学能力培训</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-question-circle text-indigo-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">讲解能力不足</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">在讲解AI、机器人、VR知识时，难以深入浅出地将复杂的技术原理讲解清楚</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">激励机制缺失</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-award text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">评价体系不完善</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">尚未建立完善的科普工作评价与激励体系，在职称晋升、表彰奖励等方面，科普工作者未得到足够的倾斜</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-user-minus text-indigo-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">人才流失严重</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">工作积极性不高，难以吸引和留住高素质的专业科普人才，导致科普基地人才队伍青黄不接</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Building -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-cyan-600 to-blue-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-trademark mr-3"></i>品牌建设：特色辨识度低，联动效应薄弱
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">活动同质化严重</h4>
+                                    <div class="bg-gradient-to-br from-cyan-50 to-blue-50 p-6 rounded-lg">
+                                        <p class="text-secondary text-sm leading-relaxed mb-4">
+                                            多数科普基地的科普活动同质化严重，未能充分挖掘地域文化与产业特色，打造具有独特标识的科普品牌
+                                        </p>
+                                        <div class="space-y-2 text-xs text-secondary">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2 mt-1"></i>
+                                                <span>AI科普基地、机器人科普基地还是VR科普基地，活动形式与内容大多相似</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2 mt-1"></i>
+                                                <span>缺乏创新性与差异化，未能结合江西的红色文化、陶瓷文化等地域特色</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">缺乏常态化联动</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-cyan-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-unlink text-cyan-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">各自为战</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">基地间缺乏常态化联动机制，未形成"AI + 机器人 + VR"科普集群效应</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-compress-alt text-blue-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">品牌影响力有限</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">科普基地的品牌影响力局限于区域范围，难以在全省乃至全国范围内形成具有广泛影响力的科普品牌IP</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 7: Recommendations -->
+        <section id="recommendations" class="py-20 bg-surface">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">高质量发展对策建议</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Management Improvement -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-cogs mr-3"></i>完善管理机制，构建分级协同管理体系
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">制度建设</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-sm mb-2">修订管理办法</h5>
+                                            <p class="text-secondary text-xs">修订《江西省科普基地建设管理办法》，明确省、市、县各级政府及基地运营单位在科普基地建设与管理中的权责划分</p>
+                                        </div>
+
+                                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-4 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-sm mb-2">建立考核机制</h5>
+                                            <p class="text-secondary text-xs">建立"共建共管共享"考核机制，将科普基地的运营成效、科普活动开展频次与质量、公众满意度等纳入考核指标体系</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">信息化管理</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-laptop text-blue-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">搭建综合管理平台</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">引入信息化管理手段，实现基地信息、科普活动、资源配置等的数字化管理</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-indigo-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-headset text-indigo-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">优化服务体验</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">推行"线上办理+一对一联系人"制度，科研人员与公众可通过平台便捷办理科普活动预约、咨询投诉等业务</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Facility Upgrade -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-green-600 to-teal-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-wrench mr-3"></i>强化设施升级，推进基地现代化改造
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-3 gap-6">
+                                <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                                    <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                        <i class="fas fa-list-ol text-green-500 mr-2"></i>分类分步升级
+                                    </h4>
+                                    <p class="text-secondary text-sm mb-3">参照高标准农田建设经验，制定科普基地设施升级规划</p>
+                                    <div class="space-y-2 text-xs text-secondary">
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                            <span>依据设施的重要性与使用频率分类</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                            <span>优先保障核心科普设备的维护经费</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 p-6 rounded-xl">
+                                    <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                        <i class="fas fa-hand-holding-usd text-teal-500 mr-2"></i>政策资金倾斜
+                                    </h4>
+                                    <p class="text-secondary text-sm mb-3">对县域及乡村科普基地给予政策与资金倾斜</p>
+                                    <div class="space-y-2 text-xs text-secondary">
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check text-teal-500 mr-2 mt-1"></i>
+                                            <span>设立专项设施升级资金</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check text-teal-500 mr-2 mt-1"></i>
+                                            <span>鼓励地方政府与企业合作</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gradient-to-br from-cyan-50 to-blue-50 p-6 rounded-xl">
+                                    <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                        <i class="fas fa-hands-helping text-cyan-500 mr-2"></i>院所共修模式
+                                    </h4>
+                                    <p class="text-secondary text-sm mb-3">整合高校、科研机构、企业的技术资源</p>
+                                    <div class="space-y-2 text-xs text-secondary">
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check text-cyan-500 mr-2 mt-1"></i>
+                                            <span>高校与科研机构提供技术方案</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <i class="fas fa-check text-cyan-500 mr-2 mt-1"></i>
+                                            <span>企业提供先进设备与优质服务</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Talent Team Building -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-600 to-pink-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-user-graduate mr-3"></i>建强人才队伍，健全科普激励保障机制
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">复合型科普队伍</h4>
+                                    <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg">
+                                        <h5 class="font-semibold text-primary text-sm mb-4">"科技工作者 + 专业教师 + 志愿者"</h5>
+                                        <div class="space-y-3">
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <div class="flex items-center mb-1">
+                                                    <i class="fas fa-flask text-purple-500 mr-2"></i>
+                                                    <span class="font-medium text-sm">科技工作者</span>
+                                                </div>
+                                                <p class="text-secondary text-xs">凭借深厚的专业知识，为科普内容提供科学支撑</p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <div class="flex items-center mb-1">
+                                                    <i class="fas fa-chalkboard-teacher text-pink-500 mr-2"></i>
+                                                    <span class="font-medium text-sm">专业教师</span>
+                                                </div>
+                                                <p class="text-secondary text-xs">具备丰富的教学经验，将复杂科技知识转化为通俗易懂的科普课程</p>
+                                            </div>
+                                            <div class="bg-white p-3 rounded-lg">
+                                                <div class="flex items-center mb-1">
+                                                    <i class="fas fa-hands-helping text-purple-500 mr-2"></i>
+                                                    <span class="font-medium text-sm">志愿者</span>
+                                                </div>
+                                                <p class="text-secondary text-xs">协助开展科普活动的组织、引导等工作，扩大科普服务的覆盖面</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">激励保障机制</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-graduation-cap text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">科普能力培训</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">定期开展科普能力培训，邀请科普领域专家、优秀科普工作者授课，培训内容涵盖科技知识、科普教学方法、新媒体传播技巧等</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-pink-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-award text-pink-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">职称晋升倾斜</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">落实《中国科协科普发展规划》要求，将科普工作纳入科技人员职称晋升、人才评选的指标体系，增加科普工作在考核中的权重</p>
+                                        </div>
+
+                                        <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-trophy text-purple-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">专项奖励基金</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">设立科普专项奖励基金，对在科普工作中表现突出的个人与团队给予表彰奖励，如颁发"科普之星"荣誉称号、给予物质奖励等</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Building -->
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-orange-600 to-red-600 p-6">
+                            <h3 class="text-2xl font-bold text-white flex items-center">
+                                <i class="fas fa-flag mr-3"></i>打造特色品牌，深化跨领域协同联动
+                            </h3>
+                        </div>
+
+                        <div class="p-8">
+                            <div class="grid lg:grid-cols-2 gap-8 mb-8">
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">地域文化融合</h4>
+                                    <div class="space-y-4">
+                                        <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-flag text-red-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">南昌VR基地</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">强化"红色文化 + VR"体验，通过VR技术重现南昌起义等红色历史场景，让观众身临其境地感受革命精神</p>
+                                        </div>
+
+                                        <div class="bg-gradient-to-r from-orange-50 to-yellow-50 p-4 rounded-lg">
+                                            <div class="flex items-center mb-2">
+                                                <i class="fas fa-mountain text-orange-500 mr-3"></i>
+                                                <h5 class="font-semibold text-primary text-sm">兴国基地</h5>
+                                            </div>
+                                            <p class="text-secondary text-xs">突出"老区科创"品牌，结合当地红色文化与科技创新成果，开展具有地方特色的机器人科普活动</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="text-lg font-semibold text-primary mb-4">科普基地联盟</h4>
+                                    <div class="bg-gradient-to-br from-orange-50 to-red-50 p-6 rounded-lg">
+                                        <p class="text-secondary text-sm mb-4">建立江西省AI、机器人、VR科普基地联盟，加强基地间的沟通协作</p>
+                                        <div class="space-y-2 text-xs text-secondary">
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
+                                                <span>制定联盟章程与合作机制</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
+                                                <span>定期召开联盟会议，共同策划科普活动</span>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <i class="fas fa-check text-orange-500 mr-2 mt-1"></i>
+                                                <span>实现资源共享、优势互补</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-r from-accent/10 to-blue-50 p-6 rounded-xl">
+                                <h4 class="font-semibold text-primary mb-4">跨区域科普联动活动</h4>
+                                <div class="grid lg:grid-cols-2 gap-6">
+                                    <div>
+                                        <p class="text-secondary text-sm mb-3">举办"赣鄱科技科普行"主题活动，组织科普基地走进全省各地</p>
+                                        <div class="space-y-2 text-xs text-secondary">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-image text-blue-500 mr-2"></i>
+                                                <span>科普展览</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-microphone text-green-500 mr-2"></i>
+                                                <span>科普讲座</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-hand-pointer text-purple-500 mr-2"></i>
+                                                <span>体验活动</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-secondary text-sm mb-3">加强与媒体的合作，借助电视、广播、报纸、网络新媒体等平台</p>
+                                        <div class="space-y-2 text-xs text-secondary">
+                                            <div class="flex items-center">
+                                                <i class="fas fa-video text-blue-500 mr-2"></i>
+                                                <span>制作科普短视频、科普纪录片</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-broadcast-tower text-green-500 mr-2"></i>
+                                                <span>在新媒体平台上广泛传播</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <i class="fas fa-newspaper text-purple-500 mr-2"></i>
+                                                <span>邀请媒体参与科普活动报道</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Conclusion -->
+        <section id="conclusion" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-serif font-bold text-primary mb-12 text-center">
+                    <span class="border-b-4 border-accent pb-2">研究结论与展望</span>
+                </h2>
+
+                <div class="max-w-6xl mx-auto space-y-16">
+                    <!-- Research Conclusion -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
+                            <i class="fas fa-check-circle text-accent mr-3"></i>研究结论
+                        </h3>
+
+                        <div class="grid lg:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold text-primary mb-4">显著成效</h4>
+                                <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-lg">
+                                    <p class="text-secondary text-sm leading-relaxed mb-4">
+                                        江西省在AI、机器人、VR科普基地建设方面已取得显著成效，形成了层次分明、特色鲜明的发展格局
+                                    </p>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-xs mb-1">AI科普基地</h5>
+                                            <p class="text-secondary text-xs">乡村、县域、校园等不同类型的AI科普基地，通过各具特色的课程与活动，将AI知识带到不同群体身边</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-xs mb-1">机器人科普基地</h5>
+                                            <p class="text-secondary text-xs">依托职业院校与综合场馆，在职业教育与大众启蒙层面双管齐下</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded-lg">
+                                            <h5 class="font-semibold text-primary text-xs mb-1">VR科普基地</h5>
+                                            <p class="text-secondary text-xs">紧扣文旅融合、产业赋能、研学实践等主题，成为展示VR技术魅力与产业成果的重要窗口</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-lg font-semibold text-primary mb-4">面临挑战</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg shadow-sm border border-red-200">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-sitemap text-red-500 mr-3"></i>
+                                            <h5 class="font-semibold text-primary text-sm">管理机制</h5>
+                                        </div>
+                                        <p class="text-secondary text-xs">权责划分模糊，协同联动不足，导致资源整合困难，管理效率低下</p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg shadow-sm border border-orange-200">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-tools text-orange-500 mr-3"></i>
+                                            <h5 class="font-semibold text-primary text-sm">基础设施</h5>
+                                        </div>
+                                        <p class="text-secondary text-xs">设备维护滞后、升级动力不足，影响科普体验质量</p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg shadow-sm border border-yellow-200">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-users text-yellow-500 mr-3"></i>
+                                            <h5 class="font-semibold text-primary text-sm">人才队伍</h5>
+                                        </div>
+                                        <p class="text-secondary text-xs">专业科普人员匮乏，激励机制缺失，制约科普内容创新与服务提升</p>
+                                    </div>
+
+                                    <div class="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
+                                        <div class="flex items-center mb-2">
+                                            <i class="fas fa-trademark text-purple-500 mr-3"></i>
+                                            <h5 class="font-semibold text-primary text-sm">品牌建设</h5>
+                                        </div>
+                                        <p class="text-secondary text-xs">缺乏特色，联动效应薄弱，难以形成广泛的社会影响力</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 bg-gradient-to-r from-accent/10 to-blue-50 p-6 rounded-xl">
+                            <h4 class="font-semibold text-primary mb-4">高质量发展路径</h4>
+                            <p class="text-secondary text-sm leading-relaxed">
+                                为实现科普基地高质量发展，需从完善管理机制、强化设施升级、建强人才队伍、打造特色品牌等方面发力。构建分级协同管理体系，明确各方权责，提升管理效能；加大设施升级投入，探索多元升级模式，提升基地现代化水平；健全科普激励保障机制，吸引和留住专业人才，提升科普服务质量；挖掘地域文化与产业特色，打造特色科普品牌，加强基地间协同联动，扩大科普影响力，推动科普基地从规模扩张向质量提升转变
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Future Outlook -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
+                            <i class="fas fa-rocket text-accent mr-3"></i>未来展望
+                        </h3>
+
+                        <p class="text-secondary text-sm mb-6">随着人工智能、元宇宙等前沿技术的迅猛发展，江西省AI、机器人、VR科普基地将迎来更为广阔的发展前景</p>
+
+                        <div class="grid lg:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-brain text-blue-500 mr-2"></i>智能化展陈
+                                </h4>
+                                <p class="text-secondary text-sm mb-3">人工智能技术的不断进步，将为科普基地提供更加智能化的展陈与互动方式</p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                        <span>智能导览机器人提供定制化科普讲解服务</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-blue-500 mr-2 mt-1"></i>
+                                        <span>利用AI算法优化展览布局与内容设置</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-globe text-purple-500 mr-2"></i>元宇宙融合
+                                </h4>
+                                <p class="text-secondary text-sm mb-3">元宇宙技术有望深度融入科普基地运营，构建"线上云科普 + 线下沉浸式体验"的融合模式</p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                                        <span>线上：随时随地进入虚拟科普场馆</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-purple-500 mr-2 mt-1"></i>
+                                        <span>线下：打造更加逼真、沉浸的科普体验场景</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gradient-to-br from-green-50 to-teal-50 p-6 rounded-xl">
+                                <h4 class="text-lg font-semibold text-primary mb-4 flex items-center">
+                                    <i class="fas fa-seedling text-green-500 mr-2"></i>人才培养摇篮
+                                </h4>
+                                <p class="text-secondary text-sm mb-3">江西科普基地将成为培育创新人才的摇篮和展示江西数字产业成果的重要窗口</p>
+                                <div class="space-y-2 text-xs text-secondary">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>激发青少年对科技的兴趣与创新思维</span>
+                                    </div>
+                                    <div class="flex items-start">
+                                        <i class="fas fa-check text-green-500 mr-2 mt-1"></i>
+                                        <span>吸引更多人才、技术与资本汇聚</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 bg-gradient-to-r from-green-100 to-blue-100 p-6 rounded-xl text-center">
+                            <p class="text-green-800 text-lg font-medium">
+                                <i class="fas fa-star mr-2"></i>
+                                展望未来，江西科普基地将在全国科普事业与数字产业发展中发挥独特而重要的作用
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-primary text-white py-12">
+            <div class="container mx-auto px-6 text-center">
+                <div class="mb-6">
+                    <h3 class="text-2xl font-serif font-bold mb-2">江西省AI、机器人、VR科普基地发展研究报告</h3>
+                    <p class="text-gray-300">科技赋能科普 创新引领未来</p>
+                </div>
+
+                <div class="flex justify-center space-x-8 mb-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-accent">3大</div>
+                        <div class="text-gray-400 text-sm">科普基地类型</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-accent">多层次</div>
+                        <div class="text-gray-400 text-sm">发展格局</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-accent">高质量</div>
+                        <div class="text-gray-400 text-sm">发展目标</div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-600 pt-6">
+                    <p class="text-gray-400 text-sm">
+                        报告完成日期：2026年2月1日 |
+                        基于实地调研与数据分析 |
+                        为江西省科普基地高质量发展提供决策支持
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Initialize Mermaid
+        document.addEventListener('DOMContentLoaded', function () {
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base',
+                themeVariables: {
+                    // Primary colors with good contrast
+                    primaryColor: '#e3f2fd',
+                    primaryTextColor: '#1e293b',
+                    primaryBorderColor: '#3b82f6',
+                    lineColor: '#64748b',
+
+                    // Secondary colors
+                    secondaryColor: '#f3e5f5',
+                    secondaryTextColor: '#1e293b',
+                    secondaryBorderColor: '#8b5cf6',
+
+                    // Tertiary colors
+                    tertiaryColor: '#e8f5e8',
+                    tertiaryTextColor: '#1e293b',
+                    tertiaryBorderColor: '#10b981',
+
+                    // Background colors
+                    background: '#ffffff',
+                    mainBkg: '#e3f2fd',
+                    secondBkg: '#f3e5f5',
+                    tertiaryBkg: '#e8f5e8',
+
+                    // Node specific colors with high contrast
+                    cScale0: '#e3f2fd',
+                    cScale1: '#f3e5f5',
+                    cScale2: '#e8f5e8',
+                    cScale3: '#fff3e0',
+                    cScale4: '#fce4ec',
+                    cScale5: '#e0f2f1',
+
+                    // Text colors for different scales
+                    cScale0Text: '#1e293b',
+                    cScale1Text: '#1e293b',
+                    cScale2Text: '#1e293b',
+                    cScale3Text: '#1e293b',
+                    cScale4Text: '#1e293b',
+                    cScale5Text: '#1e293b',
+
+                    // Special node colors
+                    specialTextColor: '#ffffff',
+                    specialBkg: '#1e293b',
+                    specialBorderColor: '#3b82f6',
+
+                    // Edge and label styling
+                    edgeLabelBackground: 'rgba(255, 255, 255, 0.9)',
+                    edgeLabelColor: '#475569',
+
+                    // Font settings
+                    fontFamily: 'Inter, sans-serif',
+                    fontSize: '14px'
+                },
+                flowchart: {
+                    htmlLabels: true,
+                    curve: 'basis',
+                    padding: 20,
+                    nodeSpacing: 50,
+                    rankSpacing: 80,
+                    diagramPadding: 20,
+                    useMaxWidth: false
+                },
+                securityLevel: 'loose'
+            });
+
+            // Initialize Mermaid Controls for zoom and pan
+            initializeMermaidControls();
+        });
+
+        // Initialize Mermaid Controls for zoom and pan
+        function initializeMermaidControls() {
+            const containers = document.querySelectorAll('.mermaid-container');
+
+            containers.forEach(container => {
+                const mermaidElement = container.querySelector('.mermaid');
+                let scale = 1;
+                let isDragging = false;
+                let startX, startY, translateX = 0, translateY = 0;
+
+                // Touch related state
+                let isTouch = false;
+                let touchStartTime = 0;
+                let initialDistance = 0;
+                let initialScale = 1;
+                let isPinching = false;
+
+                // Zoom controls
+                const zoomInBtn = container.querySelector('.zoom-in');
+                const zoomOutBtn = container.querySelector('.zoom-out');
+                const resetBtn = container.querySelector('.reset-zoom');
+                const fullscreenBtn = container.querySelector('.fullscreen');
+
+                function updateTransform() {
+                    mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+                    if (scale > 1) {
+                        container.classList.add('zoomed');
+                    } else {
+                        container.classList.remove('zoomed');
+                    }
+
+                    mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+                }
+
+                if (zoomInBtn) {
+                    zoomInBtn.addEventListener('click', () => {
+                        scale = Math.min(scale * 1.25, 4);
+                        updateTransform();
+                    });
+                }
+
+                if (zoomOutBtn) {
+                    zoomOutBtn.addEventListener('click', () => {
+                        scale = Math.max(scale / 1.25, 0.3);
+                        if (scale <= 1) {
+                            translateX = 0;
+                            translateY = 0;
+                        }
+                        updateTransform();
+                    });
+                }
+
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', () => {
+                        scale = 1;
+                        translateX = 0;
+                        translateY = 0;
+                        updateTransform();
+                    });
+                }
+
+                if (fullscreenBtn) {
+                    fullscreenBtn.addEventListener('click', () => {
+                        if (container.requestFullscreen) {
+                            container.requestFullscreen();
+                        } else if (container.webkitRequestFullscreen) {
+                            container.webkitRequestFullscreen();
+                        } else if (container.msRequestFullscreen) {
+                            container.msRequestFullscreen();
+                        }
+                    });
+                }
+
+                // Mouse Events
+                mermaidElement.addEventListener('mousedown', (e) => {
+                    if (isTouch) return;
+
+                    isDragging = true;
+                    startX = e.clientX - translateX;
+                    startY = e.clientY - translateY;
+                    mermaidElement.style.cursor = 'grabbing';
+                    updateTransform();
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (isDragging && !isTouch) {
+                        translateX = e.clientX - startX;
+                        translateY = e.clientY - startY;
+                        updateTransform();
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    if (isDragging && !isTouch) {
+                        isDragging = false;
+                        mermaidElement.style.cursor = 'grab';
+                        updateTransform();
+                    }
+                });
+
+                document.addEventListener('mouseleave', () => {
+                    if (isDragging && !isTouch) {
+                        isDragging = false;
+                        mermaidElement.style.cursor = 'grab';
+                        updateTransform();
+                    }
+                });
+
+                // Get distance between two touch points
+                function getTouchDistance(touch1, touch2) {
+                    return Math.hypot(
+                        touch2.clientX - touch1.clientX,
+                        touch2.clientY - touch1.clientY
+                    );
+                }
+
+                // Touch Events
+                mermaidElement.addEventListener('touchstart', (e) => {
+                    isTouch = true;
+                    touchStartTime = Date.now();
+
+                    if (e.touches.length === 1) {
+                        isPinching = false;
+                        isDragging = true;
+
+                        const touch = e.touches[0];
+                        startX = touch.clientX - translateX;
+                        startY = touch.clientY - translateY;
+
+                    } else if (e.touches.length === 2) {
+                        isPinching = true;
+                        isDragging = false;
+
+                        const touch1 = e.touches[0];
+                        const touch2 = e.touches[1];
+                        initialDistance = getTouchDistance(touch1, touch2);
+                        initialScale = scale;
+                    }
+
+                    e.preventDefault();
+                }, { passive: false });
+
+                mermaidElement.addEventListener('touchmove', (e) => {
+                    if (e.touches.length === 1 && isDragging && !isPinching) {
+                        const touch = e.touches[0];
+                        translateX = touch.clientX - startX;
+                        translateY = touch.clientY - startY;
+                        updateTransform();
+
+                    } else if (e.touches.length === 2 && isPinching) {
+                        const touch1 = e.touches[0];
+                        const touch2 = e.touches[1];
+                        const currentDistance = getTouchDistance(touch1, touch2);
+
+                        if (initialDistance > 0) {
+                            const newScale = Math.min(Math.max(
+                                initialScale * (currentDistance / initialDistance),
+                                0.3
+                            ), 4);
+                            scale = newScale;
+                            updateTransform();
+                        }
+                    }
+
+                    e.preventDefault();
+                }, { passive: false });
+
+                mermaidElement.addEventListener('touchend', (e) => {
+                    if (e.touches.length === 0) {
+                        isDragging = false;
+                        isPinching = false;
+                        initialDistance = 0;
+
+                        setTimeout(() => {
+                            isTouch = false;
+                        }, 100);
+                    } else if (e.touches.length === 1 && isPinching) {
+                        isPinching = false;
+                        isDragging = true;
+
+                        const touch = e.touches[0];
+                        startX = touch.clientX - translateX;
+                        startY = touch.clientY - translateY;
+                    }
+
+                    updateTransform();
+                });
+
+                mermaidElement.addEventListener('touchcancel', (e) => {
+                    isDragging = false;
+                    isPinching = false;
+                    initialDistance = 0;
+
+                    setTimeout(() => {
+                        isTouch = false;
+                    }, 100);
+
+                    updateTransform();
+                });
+
+                // Enhanced wheel zoom with better center point handling
+                container.addEventListener('wheel', (e) => {
+                    e.preventDefault();
+                    const rect = container.getBoundingClientRect();
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+
+                    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+                    const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+                    if (newScale !== scale) {
+                        const scaleDiff = newScale / scale;
+                        translateX = translateX * scaleDiff;
+                        translateY = translateY * scaleDiff;
+                        scale = newScale;
+
+                        if (scale <= 1) {
+                            translateX = 0;
+                            translateY = 0;
+                        }
+
+                        updateTransform();
+                    }
+                });
+
+                // Initialize display
+                updateTransform();
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in TOC
+        const sections = document.querySelectorAll('section[id]');
+        const tocLinks = document.querySelectorAll('.toc-fixed a');
+
+        function highlightActiveSection() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('text-accent', 'font-semibold');
+                link.classList.add('text-secondary');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.remove('text-secondary');
+                    link.classList.add('text-accent', 'font-semibold');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightActiveSection);
+        highlightActiveSection(); // Initial call
+    </script>
+
+
+</body>
+
+</html>
